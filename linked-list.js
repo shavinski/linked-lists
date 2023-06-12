@@ -110,7 +110,7 @@ class LinkedList {
     let currNode = this.head;
 
     for (let i = 0; i < idx; i++) {
-      if (this.next === null) throw new Error;
+      if (currNode.next === null) throw new Error;
       currNode = currNode.next;
     }
 
@@ -126,7 +126,7 @@ class LinkedList {
     let currNode = this.head;
 
     for (let i = 0; i < idx; i++) {
-      if (this.next === null) throw new Error;
+      if (currNode.next === null) throw new Error;
       currNode = currNode.next;
     }
 
@@ -140,6 +140,16 @@ class LinkedList {
 
     let node = new Node(val);
 
+    // want new node to be the prev.next 
+    // we want the node at old index to be on new node.next 
+    
+    if (this.head === null && this.tail === null) {
+      this.head = node;
+      this.tail = node;
+      this.length++;
+      return undefined;
+    }
+    
     if(idx === 0){
       node.next = this.head;
       this.head = node;
@@ -147,13 +157,12 @@ class LinkedList {
       return undefined;
     }
 
-
     let currNode = this.head;
     let prevNode;
     //console.log("outsideee", currNode)
     //traverse through list
     for (let i = 0; i < idx; i++) {
-      if (this.next === null) throw new Error;
+      // if (currNode.next === null) throw new Error;
       //console.log(currNode)
       prevNode = currNode;
       currNode = currNode.next;
@@ -161,6 +170,9 @@ class LinkedList {
 
     //insert
     prevNode.next = node;
+    if (currNode === null) {
+      this.tail = node;
+    }
     node.next = currNode;
 
     this.length++;
