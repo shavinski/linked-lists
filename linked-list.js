@@ -23,25 +23,51 @@ class LinkedList {
   /** push(val): add new value to end of list. */
 
   push(val) {
+    let node = new Node(val);
 
+    if (this.head === null) this.head = node;
+    if (this.tail !== null) this.tail.next = node;
+    
+    this.tail = node
   }
 
   /** unshift(val): add new value to start of list. */
 
   unshift(val) {
+    let node = new Node(val);
+    
+    if (this.head !== null) node.next = this.head;
+    if (this.tail === null) this.tail = node;
 
+    this.head = node;
   }
 
   /** pop(): return & remove last item. */
 
   pop() {
 
+    let currNode = this.head;
+
+    while(node.next !== this.tail) {
+      currNode = this.next;
+
+    }
+
+    let returnValue = this.tail;
+    this.tail = currNode;
+    this.tail.next = null;
+
+    return returnValue;
   }
 
   /** shift(): return & remove first item. */
 
   shift() {
+    let prevHead = this.head;
 
+    this.head = this.head.next;
+
+    return prevHead;
   }
 
   /** getAt(idx): get val at idx. */
